@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ثمین مُد | SAMIN MOD</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: "Vazirmatn", sans-serif;
+            line-height: 1.8;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-fa {
+            font-size: 23px;
+            font-weight: 700;
+        }
+
+        .logo-en {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 17px;
+            letter-spacing: 5px;
+            color: #c9a86a;
+            margin-top: 6px;
+            direction: ltr;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin-right: 28px;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #c9a86a;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 8%;
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.58),
+                    rgba(0,0,0,.90)
+                ),
+                url("https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1600&q=80")
+                center / cover;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .english-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 20px;
+            letter-spacing: 7px;
+            color: #c9a86a;
+            direction: ltr;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 9vw, 90px);
+            line-height: 1.15;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: #c9a86a;
+        }
+
+        .hero p {
+            color: #c4c4c4;
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 32px;
+            background: #c9a86a;
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 2px;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            background: #e2c98f;
+        }
+
+        .section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #888;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: #121212;
+            padding: 38px 28px;
+            border: 1px solid #242424;
+            transition: .35s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #c9a86a;
+        }
+
+        .number {
+            font-family: "Cormorant Garamond", serif;
+            color: #c9a86a;
+            font-size: 20px;
+        }
+
+        .card h3 {
+            font-size: 21px;
+            margin: 15px 0;
+        }
+
+        .card p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .about {
+            background: #101010;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 100%;
+            display: block;
+        }
+
+        .about h2 {
+            font-size: 42px;
+            margin-bottom: 25px;
+        }
+
+        .about p {
+            color: #aaa;
+            margin-bottom: 18px;
+        }
+
+        .brand-name {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .brand-name .fa {
+            font-size: 55px;
+            font-weight: 700;
+        }
+
+        .brand-name .en {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 32px;
+            letter-spacing: 10px;
+            color: #c9a86a;
+            margin-top: 5px;
+            direction: ltr;
+        }
+
+        /* WhatsApp */
+
+        .whatsapp-box {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .whatsapp {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border: 1px solid #c9a86a;
+            color: #fff;
+            text-decoration: none;
+            transition: .3s;
+            min-width: 220px;
+            justify-content: center;
+        }
+
+        .whatsapp:hover {
+            background: #c9a86a;
+            color: #111;
+            transform: translateY(-4px);
+        }
+
+        .whatsapp-icon {
+            font-size: 20px;
+        }
+
+        .phone {
+            direction: ltr;
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+            padding: 40px 8%;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #666;
+        }
+
+        footer strong {
+            color: #c9a86a;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 20px;
+            }
+
+            nav div:last-child {
+                display: none;
+            }
+
+            .hero {
+                padding: 130px 25px 80px;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .section {
+                padding: 75px 25px;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .about h2 {
+                font-size: 33px;
+            }
+
+            .brand-name .fa {
+                font-size: 43px;
+            }
+
+            .whatsapp-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .whatsapp {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+/* =========================
+   COLLECTIONS
+========================= */
+
+.collections {
+    padding: 110px 8%;
+    background: #080808;
+}
+
+.collection-title {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.collection-title span {
+    font-family: "Cormorant Garamond", serif;
+    color: #c9a86a;
+    letter-spacing: 6px;
+    font-size: 17px;
+}
+
+.collection-title h2 {
+    font-size: 42px;
+    margin: 12px 0;
+    color: white;
+}
+
+.collection-title p {
+    color: #777;
+    font-size: 15px;
+}
+
+
+/* GRID */
+
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* CARD */
+
+.collection-card {
+    position: relative;
+    height: 540px;
+    overflow: hidden;
+    background: #111;
+    cursor: pointer;
+}
+
+.collection-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .8s ease;
+}
+
+
+/* DARK GRADIENT */
+
+.collection-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.95) 0%,
+            rgba(0,0,0,.25) 55%,
+            rgba(0,0,0,0) 100%
+        );
+
+    z-index: 1;
+}
+
+
+/* TEXT */
+
+.collection-overlay {
+    position: absolute;
+    bottom: 35px;
+    right: 30px;
+    left: 30px;
+    z-index: 2;
+}
+
+.collection-overlay span {
+    color: #c9a86a;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+}
+
+.collection-overlay h3 {
+    color: white;
+    font-size: 38px;
+    margin: 5px 0;
+    transition: .3s;
+}
+
+.collection-overlay p {
+    color: #aaa;
+    font-family: "Cormorant Garamond", serif;
+    letter-spacing: 6px;
+    font-size: 16px;
+}
+
+.collection-overlay a {
+    display: inline-block;
+    margin-top: 18px;
+
+    color: white;
+    text-decoration: none;
+
+    border-bottom: 1px solid #c9a86a;
+    padding-bottom: 5px;
+
+    transition: .3s;
+}
+
+
+/* HOVER */
+
+.collection-card:hover img {
+    transform: scale(1.08);
+}
+
+.collection-card:hover h3 {
+    color: #c9a86a;
+}
+
+.collection-card:hover a {
+    color: #c9a86a;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .collections {
+        padding: 80px 6%;
+    }
+
+    .collection-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .collection-card {
+        height: 500px;
+    }
+
+    .collection-title h2 {
+        font-size: 34px;
+    }
+
+}    </style>
+</head>
+
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+
+        <div class="logo">
+
+            <div class="logo-fa">
+                ثمین مُد
+            </div>
+
+            <div class="logo-en">
+                SAMIN MOD
+            </div>
+
+        </div>
+
+        <div>
+
+            <a href="#services">خدمات</a>
+
+            <a href="#about">درباره ما</a>
+
+            <a href="#contact">تماس</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="english-title">
+                SAMIN MOD
+            </div>
+
+            <h1>
+                استایل شما،
+                <span>امضای ما</span>
+            </h1>
+
+            <p>
+                ثمین مُد؛ ترکیبی از کیفیت،
+                ظرافت و طراحی مدرن برای
+                کسانی که متفاوت بودن را انتخاب می‌کنند.
+            </p>
+
+            <a href="#contact" class="btn">
+                ارتباط با ما
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+
+    <section class="section" id="services">
+
+        <div class="section-title">
+
+            <h2>
+                خدمات ثمین مُد
+            </h2>
+
+            <p>
+                کیفیتی که در جزئیات دیده می‌شود.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+
+                <span class="number">01</span>
+
+                <h3>
+                    تولید پوشاک
+                </h3>
+
+                <p>
+                    تولید انواع پوشاک با تمرکز
+                    بر کیفیت و اجرای دقیق.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <span class="number">02</span>
+
+                <h3>
+                    دوخت سفارشی
+                </h3>
+
+                <p>
+                    اجرای مدل‌های اختصاصی
+                    متناسب با سلیقه شما.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <span class="number">03</span>
+
+                <h3>
+                    طراحی لباس
+                </h3>
+
+                <p>
+                    تبدیل ایده‌های شما به
+                    طراحی و محصولی خاص.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+<!-- COLLECTIONS -->
+
+<section class="collections" id="collections">
+
+    <div class="collection-title">
+
+        <span>OUR COLLECTION</span>
+
+        <h2>کالکشن ثمین مُد</h2>
+
+        <p>
+            انتخاب کن؛ استایل خودت را بساز.
+        </p>
+
+    </div>
+
+
+    <div class="collection-grid">
+
+
+        <!-- PANTS -->
+
+        <div class="collection-card">
+
+            <img
+                src="https://i.pinimg.com/736x/43/55/ca/4355ca7c6c8a6f6f9c6d6f2e5d9c0e6a.jpg"
+                alt="شلوار ثمین مد"
+            >
+
+            <div class="collection-overlay">
+
+                <span>01</span>
+
+                <h3>شلوار</h3>
+
+                <p>PANTS</p>
+
+                <a href="#contact">
+                    مشاهده کالکشن
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOODIE -->
+
+        <div class="collection-card">
+
+            <img
+                src="https://i.pinimg.com/736x/2d/5e/1e/2d5e1e7c4d8c7b5a5b5e2f5d5a2d5e1e.jpg"
+                alt="هودی ثمین مد"
+            >
+
+            <div class="collection-overlay">
+
+                <span>02</span>
+
+                <h3>هودی</h3>
+
+                <p>HOODIE</p>
+
+                <a href="#contact">
+                    مشاهده کالکشن
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- T-SHIRT -->
+
+        <div class="collection-card">
+
+            <img
+                src="https://i.pinimg.com/736x/8d/0b/3a/8d0b3a2c7e1f6c4d8a3b9f5e2c1d0a7b.jpg"
+                alt="تیشرت ثمین مد"
+            >
+
+            <div class="collection-overlay">
+
+                <span>03</span>
+
+                <h3>تیشرت</h3>
+
+                <p>T-SHIRT</p>
+
+                <a href="#contact">
+                    مشاهده کالکشن
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+    <!-- ABOUT -->
+
+    <section class="section about" id="about">
+
+        <img
+            src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=80"
+            alt="ثمین مد"
+        >
+
+        <div>
+
+            <h2>
+                ثمین مُد
+            </h2>
+
+            <p>
+                یک لباس خوب فقط یک پوشش نیست؛
+                بخشی از شخصیت و استایل شماست.
+            </p>
+
+            <p>
+                در ثمین مُد تلاش می‌کنیم
+                کیفیت دوخت، انتخاب پارچه و
+                طراحی را در کنار هم قرار دهیم.
+            </p>
+
+            <a href="#contact" class="btn">
+                ارتباط با ما
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- BRAND -->
+
+    <section class="brand-name">
+
+        <div class="fa">
+            ثمین مُد
+        </div>
+
+        <div class="en">
+            SAMIN MOD
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section class="section" id="contact">
+
+        <div class="section-title">
+
+            <h2>
+                با ثمین مُد در ارتباط باشید
+            </h2>
+
+            <p>
+                برای سفارش و دریافت اطلاعات بیشتر
+                از طریق واتساپ با ما در ارتباط باشید.
+            </p>
+
+
+            <div class="whatsapp-box">
+
+                <a
+                    class="whatsapp"
+                    href="https://wa.me/989029484598"
+                    target="_blank"
+                >
+
+                    <span class="whatsapp-icon">☘</span>
+
+                    <span class="phone">
+                        +98 902 948 4598
+                    </span>
+
+                </a>
+
+
+                <a
+                    class="whatsapp"
+                    href="https://wa.me/989106346007"
+                    target="_blank"
+                >
+
+                    <span class="whatsapp-icon">☘</span>
+
+                    <span class="phone">
+                        +98 910 634 6007
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        © 2026
+
+        <strong>
+            ثمین مُد
+        </strong>
+
+        — تمامی حقوق محفوظ است.
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aboolfaazel1384-hash.github.io/samin-mod/sitemap.xml

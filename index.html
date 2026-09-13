@@ -560,7 +560,88 @@
     .product-item img {
         height: 280px;
     }
-    }  </style>
+    } /* =========================
+   IMAGE LIGHTBOX
+========================= */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 1px solid #333;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 35px;
+    transition: .3s;
+}
+
+.lightbox-close {
+    top: 20px;
+    right: 30px;
+    font-size: 42px;
+}
+
+.lightbox-prev {
+    left: 30px;
+}
+
+.lightbox-next {
+    right: 30px;
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    color: #c9a86a;
+}
+
+@media (max-width: 700px) {
+
+    .lightbox {
+        padding: 15px;
+    }
+
+    .lightbox img {
+        max-width: 94%;
+        max-height: 75vh;
+    }
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+    .lightbox-next {
+        right: 10px;
+    }
+
+    .lightbox-close {
+        top: 10px;
+        right: 15px;
+    }
+    } </style>
 </head>
 
 
@@ -1034,7 +1115,146 @@ function showGallery(category) {
 
     </footer>
 
+<!-- IMAGE LIGHTBOX -->
 
+<div class="lightbox" id="lightbox">
+
+    <button class="lightbox-close"
+            onclick="closeLightbox()">
+        ×
+    </button>
+
+    <button class="lightbox-prev"
+            onclick="changeImage(-1)">
+        ❮
+    </button>
+
+    <img id="lightbox-image" src="" alt="تصویر محصول">
+
+    <button class="lightbox-next"
+            onclick="changeImage(1)">
+        ❯
+    </button>
+
+</div>
+
+
+<script>
+
+let currentImages = [];
+let currentIndex = 0;
+
+
+/* تمام تصاویر محصولات */
+
+document.querySelectorAll('.product-item img').forEach(function(image) {
+
+    image.addEventListener('click', function() {
+
+        const gallery = image.closest('.product-gallery');
+
+        currentImages =
+            Array.from(gallery.querySelectorAll('img'));
+
+        currentIndex =
+            currentImages.indexOf(image);
+
+        openLightbox();
+
+    });
+
+});
+
+
+function openLightbox() {
+
+    const lightbox =
+        document.getElementById('lightbox');
+
+    const image =
+        document.getElementById('lightbox-image');
+
+    image.src =
+        currentImages[currentIndex].src;
+
+    lightbox.classList.add('active');
+
+}
+
+
+function closeLightbox() {
+
+    document
+        .getElementById('lightbox')
+        .classList.remove('active');
+
+}
+
+
+function changeImage(direction) {
+
+    currentIndex += direction;
+
+    if (currentIndex < 0) {
+
+        currentIndex =
+            currentImages.length - 1;
+
+    }
+
+    if (currentIndex >= currentImages.length) {
+
+        currentIndex = 0;
+
+    }
+
+    document
+        .getElementById('lightbox-image')
+        .src = currentImages[currentIndex].src;
+
+}
+
+
+/* بستن با کلیک روی فضای بیرون */
+
+document
+    .getElementById('lightbox')
+    .addEventListener('click', function(event) {
+
+        if (event.target === this) {
+
+            closeLightbox();
+
+        }
+
+    });
+
+
+/* بستن با کلید ESC */
+
+document.addEventListener('keydown', function(event) {
+
+    if (event.key === 'Escape') {
+
+        closeLightbox();
+
+    }
+
+    if (event.key === 'ArrowLeft') {
+
+        changeImage(-1);
+
+    }
+
+    if (event.key === 'ArrowRight') {
+
+        changeImage(1);
+
+    }
+
+});
+
+</script>
 </body>
 
 </html>

@@ -504,7 +504,63 @@
         font-size: 34px;
     }
 
-}    </style>
+}  /* =========================
+   PRODUCT GALLERY
+========================= */
+
+.product-gallery {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 35px;
+    animation: galleryFade .4s ease;
+}
+
+.product-gallery.active {
+    display: grid;
+}
+
+.product-item {
+    background: #111;
+    border: 1px solid #242424;
+    overflow: hidden;
+}
+
+.product-item img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s ease;
+}
+
+.product-item:hover img {
+    transform: scale(1.05);
+}
+
+@keyframes galleryFade {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 800px) {
+
+    .product-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .product-item img {
+        height: 280px;
+    }
+    }  </style>
 </head>
 
 
@@ -648,23 +704,24 @@
 
         <h2>کالکشن ثمین مُد</h2>
 
-       <p>
-    کالکشن پوشاک ثمین مُد شامل شلوار، هودی و تیشرت
-    با طراحی مدرن و مناسب استایل‌های امروزی.
-       </p>   
+        <p>
+            کالکشن پوشاک ثمین مُد شامل شلوار، هودی و تیشرت
+            با طراحی مدرن و مناسب استایل‌های امروزی.
+        </p>
 
     </div>
 
 
     <div class="collection-grid">
 
-
         <!-- PANTS -->
 
         <div class="collection-card">
 
-            
-                     <img src="img/e0c22f792ad562fa804c6e0b7419ed1b.jpg" alt="شلوار">
+            <img
+                src="img/e0c22f792ad562fa804c6e0b7419ed1b.jpg"
+                alt="شلوار"
+            >
 
             <div class="collection-overlay">
 
@@ -674,7 +731,8 @@
 
                 <p>PANTS</p>
 
-                <a href="#contact">
+                <a href="javascript:void(0)"
+                   onclick="showGallery('pants')">
                     مشاهده کالکشن
                 </a>
 
@@ -687,7 +745,10 @@
 
         <div class="collection-card">
 
-    <img src="img/6010b21fbb6a0816714e428fcffc287b.jpg" alt="هودی">
+            <img
+                src="img/6010b21fbb6a0816714e428fcffc287b.jpg"
+                alt="هودی"
+            >
 
             <div class="collection-overlay">
 
@@ -697,7 +758,8 @@
 
                 <p>HOODIE</p>
 
-                <a href="#contact">
+                <a href="javascript:void(0)"
+                   onclick="showGallery('hoodie')">
                     مشاهده کالکشن
                 </a>
 
@@ -710,7 +772,10 @@
 
         <div class="collection-card">
 
-            <img src="img/7aefd63502ff81896a0292db70d296c4.jpg" alt="تیشرت">
+            <img
+                src="img/7aefd63502ff81896a0292db70d296c4.jpg"
+                alt="تیشرت"
+            >
 
             <div class="collection-overlay">
 
@@ -720,7 +785,8 @@
 
                 <p>T-SHIRT</p>
 
-                <a href="#contact">
+                <a href="javascript:void(0)"
+                   onclick="showGallery('tshirt')">
                     مشاهده کالکشن
                 </a>
 
@@ -728,10 +794,127 @@
 
         </div>
 
+    </div>
+
+
+    <!-- PRODUCT GALLERIES -->
+
+    <!-- PANTS GALLERY -->
+
+    <div id="pants-gallery" class="product-gallery">
+
+        <div class="product-item">
+            <img src="img/e0c22f792ad562fa804c6e0b7419ed1b.jpg"
+                 alt="شلوار ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/d0b864d9463609459ef4d1c91fdada2c.jpg"
+                 alt="شلوار ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/f9146b7fd5c183768c60476e1d3ee4e5.jpg"
+                 alt="شلوار ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/2e6d2f43ece94acdd8065581d08e1ba4.jpg"
+                 alt="شلوار ثمین مد">
+        </div>
+
+    </div>
+
+
+    <!-- HOODIE GALLERY -->
+
+    <div id="hoodie-gallery" class="product-gallery">
+
+        <div class="product-item">
+            <img src="img/6010b21fbb6a0816714e428fcffc287b.jpg"
+                 alt="هودی ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/d9e8a04cb890bc91b657f5fdda8233d1.jpg"
+                 alt="هودی ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/2494b09d013aab726bb1fb38bec4920c.jpg"
+                 alt="هودی ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/97d18109d549ceb3af6e9149899141fd.jpg"
+                 alt="هودی ثمین مد">
+        </div>
+
+    </div>
+
+
+    <!-- T-SHIRT GALLERY -->
+
+    <div id="tshirt-gallery" class="product-gallery">
+
+        <div class="product-item">
+            <img src="img/7aefd63502ff81896a0292db70d296c4.jpg"
+                 alt="تیشرت ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/d944cf2fcbf2822f21c8552a81c46a52.jpg"
+                 alt="تیشرت ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/31adf04dd1a0c36b285aee5061252ca3.jpg"
+                 alt="تیشرت ثمین مد">
+        </div>
+
+        <div class="product-item">
+            <img src="img/48a1365d282fb13ab4760796627a0198.jpg"
+                 alt="تیشرت ثمین مد">
+        </div>
 
     </div>
 
 </section>
+
+
+<!-- GALLERY SCRIPT -->
+
+<script>
+
+function showGallery(category) {
+
+    const galleries = document.querySelectorAll('.product-gallery');
+
+    galleries.forEach(function(gallery) {
+        gallery.classList.remove('active');
+    });
+
+    const selectedGallery =
+        document.getElementById(category + '-gallery');
+
+    if (selectedGallery) {
+
+        selectedGallery.classList.add('active');
+
+        setTimeout(function() {
+
+            selectedGallery.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+        }, 100);
+
+    }
+
+}
+
+    </script>
 
     <!-- ABOUT -->
 

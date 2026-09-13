@@ -664,7 +664,39 @@
         top: 10px;
         right: 15px;
     }
-    } </style>
+    }    /* =========================
+   LIGHTBOX ORDER
+========================= */
+
+.lightbox-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.lightbox-product-name {
+    color: #c9a86a;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.order-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: #c9a86a;
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.order-btn:hover {
+    background: #e2c98f;
+    transform: translateY(-3px);
+}  </style>
 </head>
 
 
@@ -1165,7 +1197,25 @@ function showGallery(category) {
         ❮
     </button>
 
-    <img id="lightbox-image" src="" alt="تصویر محصول">
+    <div class="lightbox-content">
+
+        <img id="lightbox-image"
+             src=""
+             alt="تصویر محصول">
+
+        <div class="lightbox-product-name"
+             id="lightbox-product-name">
+        </div>
+
+        <a id="order-btn"
+           class="order-btn"
+           href="#"
+           target="_blank"
+           rel="noopener noreferrer">
+            سفارش این محصول
+        </a>
+
+    </div>
 
     <button class="lightbox-next"
             onclick="changeImage(1)">
@@ -1176,27 +1226,31 @@ function showGallery(category) {
 
 
 <script>
-
 let currentImages = [];
 let currentIndex = 0;
+let currentCategory = "";
 
+const categoryNames = {
+    pants: "شلوار",
+    hoodie: "هودی",
+    tshirt: "تیشرت"
+};
 
-/* تمام تصاویر محصولات */
+document.querySelectorAll('.product-item img').forEach(image => {
 
-document.querySelectorAll('.product-item img').forEach(function(image) {
-
-    image.addEventListener('click', function() {
+    image.addEventListener('click', function () {
 
         const gallery = image.closest('.product-gallery');
 
-        currentImages =
-            Array.from(gallery.querySelectorAll('img'));
+        currentImages = Array.from(
+            gallery.querySelectorAll('.product-item img')
+        );
 
-        currentIndex =
-            currentImages.indexOf(image);
+        currentIndex = currentImages.indexOf(image);
+
+        currentCategory = gallery.id.replace('-gallery', '');
 
         openLightbox();
-
     });
 
 });
@@ -1204,26 +1258,37 @@ document.querySelectorAll('.product-item img').forEach(function(image) {
 
 function openLightbox() {
 
-    const lightbox =
-        document.getElementById('lightbox');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const productName = document.getElementById('lightbox-product-name');
+    const orderBtn = document.getElementById('order-btn');
 
-    const image =
-        document.getElementById('lightbox-image');
+    const image = currentImages[currentIndex];
 
-    image.src =
-        currentImages[currentIndex].src;
+    lightboxImage.src = image.src;
+
+    productName.textContent =
+        categoryNames[currentCategory] +
+        " - مدل " +
+        (currentIndex + 1);
+
+    const message =
+        "سلام، برای سفارش " +
+        productName.textContent +
+        " پیام می‌دم.";
+
+    orderBtn.href =
+        "https://wa.me/989029484598?text=" +
+        encodeURIComponent(message);
 
     lightbox.classList.add('active');
-
 }
 
 
 function closeLightbox() {
 
-    document
-        .getElementById('lightbox')
+    document.getElementById('lightbox')
         .classList.remove('active');
-
 }
 
 
@@ -1232,64 +1297,41 @@ function changeImage(direction) {
     currentIndex += direction;
 
     if (currentIndex < 0) {
-
-        currentIndex =
-            currentImages.length - 1;
-
+        currentIndex = currentImages.length - 1;
     }
 
     if (currentIndex >= currentImages.length) {
-
         currentIndex = 0;
-
     }
 
-    document
-        .getElementById('lightbox-image')
-        .src = currentImages[currentIndex].src;
-
+    openLightbox();
 }
 
 
-/* بستن با کلیک روی فضای بیرون */
+document.getElementById('lightbox').addEventListener('click', function(event) {
 
-document
-    .getElementById('lightbox')
-    .addEventListener('click', function(event) {
-
-        if (event.target === this) {
-
-            closeLightbox();
-
-        }
-
-    });
-
-
-/* بستن با کلید ESC */
-
-document.addEventListener('keydown', function(event) {
-
-    if (event.key === 'Escape') {
-
+    if (event.target === this) {
         closeLightbox();
-
-    }
-
-    if (event.key === 'ArrowLeft') {
-
-        changeImage(-1);
-
-    }
-
-    if (event.key === 'ArrowRight') {
-
-        changeImage(1);
-
     }
 
 });
 
+
+document.addEventListener('keydown', function(event) {
+
+    if (event.key === 'Escape') {
+        closeLightbox();
+    }
+
+    if (event.key === 'ArrowLeft') {
+        changeImage(-1);
+    }
+
+    if (event.key === 'ArrowRight') {
+        changeImage(1);
+    }
+
+});
 </script>
 </body>
 
